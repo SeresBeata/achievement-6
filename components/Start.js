@@ -1,23 +1,35 @@
 // import components from React Native
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  ImageBackground,
+} from 'react-native';
+
+//use img for bg
+const bgImg = require('../img/Background Image.png');
 
 const Start = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>App Title</Text>
-      </View>
-      <View style={styles.settingsContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Type your username here"
-          placeholderTextColor="#757083"
-        ></TextInput>
-        <Button
-          title="Start Chatting"
-          onPress={() => navigation.navigate('Chat')}
-        />
-      </View>
+      <ImageBackground source={bgImg} resizeMode="cover" style={styles.bgImg}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>App Title</Text>
+        </View>
+        <View style={styles.settingsContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Type your username here"
+            placeholderTextColor="#757083"
+          ></TextInput>
+          <Button
+            title="Start Chatting"
+            onPress={() => navigation.navigate('Chat')}
+          />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -61,6 +73,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '300',
     color: '#757083',
+  },
+  bgImg: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
