@@ -72,23 +72,23 @@ const styles = StyleSheet.create({
 
   inputContainer: {
     width: '88%',
-
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#757083',
+    paddingLeft: 20,
+    marginBottom: 10,
   },
   icon: {
     width: '10%',
-    height: '25%',
+    height: '30%',
   },
   textInput: {
     width: '88%',
-    padding: 15,
-    marginTop: 15,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#757083',
+    paddingTop: 20,
+    paddingBottom: 20,
     backgroundColor: 'white',
     fontSize: 16,
     fontWeight: '300',
