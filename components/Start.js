@@ -20,6 +20,8 @@ const bgImg = require('../img/Background Image.png');
 const Start = ({ navigation }) => {
   //create state variable  with initial state ''
   const [name, setName] = useState('');
+  //create state variable  with initial state ''
+  const [background, setBackground] = useState('');
 
   return (
     <View style={styles.container}>
@@ -44,22 +46,31 @@ const Start = ({ navigation }) => {
             <View style={styles.colorContainer}>
               <TouchableOpacity
                 style={[styles.colorTemplate, styles.colorOne]}
+                onPress={() => setBackground(styles.colorOne.backgroundColor)}
               ></TouchableOpacity>
               <TouchableOpacity
                 style={[styles.colorTemplate, styles.colorTwo]}
+                onPress={() => setBackground(styles.colorTwo.backgroundColor)}
               ></TouchableOpacity>
               <TouchableOpacity
                 style={[styles.colorTemplate, styles.colorThree]}
+                onPress={() => setBackground(styles.colorThree.backgroundColor)}
               ></TouchableOpacity>
               <TouchableOpacity
                 style={[styles.colorTemplate, styles.colorFour]}
+                onPress={() => setBackground(styles.colorFour.backgroundColor)}
               ></TouchableOpacity>
             </View>
           </View>
           {/* End: Color Picker Section  */}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Chat', { name: name })}
+            onPress={() =>
+              navigation.navigate('Chat', {
+                name: name,
+                background: background,
+              })
+            }
           >
             <Text style={styles.buttonText}>Start Chatting</Text>
           </TouchableOpacity>
