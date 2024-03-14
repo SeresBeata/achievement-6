@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 // import components from React Native
 import {
   StyleSheet,
@@ -16,6 +18,9 @@ import SvgIcon from './SvgIcon';
 const bgImg = require('../img/Background Image.png');
 
 const Start = ({ navigation }) => {
+  //create state variable  with initial state ''
+  const [name, setName] = useState('');
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bgImg} resizeMode="cover" style={styles.bgImg}>
@@ -29,6 +34,8 @@ const Start = ({ navigation }) => {
               style={styles.textInput}
               placeholder="Type your username here"
               placeholderTextColor="#b0acb9"
+              value={name}
+              onChangeText={setName}
             ></TextInput>
           </View>
           {/* Color Picker Section: Start  */}
@@ -52,7 +59,7 @@ const Start = ({ navigation }) => {
           {/* End: Color Picker Section  */}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Chat')}
+            onPress={() => navigation.navigate('Chat', { name: name })}
           >
             <Text style={styles.buttonText}>Start Chatting</Text>
           </TouchableOpacity>
