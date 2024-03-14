@@ -1,7 +1,7 @@
 // import components from React Native
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 
-const Start = () => {
+const Start = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -12,7 +12,10 @@ const Start = () => {
           style={styles.textInput}
           placeholder="Type your username here"
         ></TextInput>
-        <Button title="Start Chatting" />
+        <Button
+          title="Start Chatting"
+          onPress={() => navigation.navigate('Chat')}
+        />
       </View>
     </View>
   );
