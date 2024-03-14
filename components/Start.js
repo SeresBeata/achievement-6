@@ -27,7 +27,7 @@ const Start = ({ navigation }) => {
             <TextInput
               style={styles.textInput}
               placeholder="Type your username here"
-              placeholderTextColor="#757083"
+              placeholderTextColor="#b0acb9"
             ></TextInput>
           </View>
 
