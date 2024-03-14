@@ -7,7 +7,7 @@ const Start = ({ navigation }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>App Title</Text>
       </View>
-      <View>
+      <View style={styles.settingsContainer}>
         <TextInput
           style={styles.textInput}
           placeholder="Type your username here"
@@ -44,6 +44,11 @@ const styles = StyleSheet.create({
   settingsContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
+
+    width: '88%',
+    height: '44%',
+    marginBottom: 30,
   },
   textInput: {
     width: '88%',
