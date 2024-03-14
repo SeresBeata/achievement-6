@@ -5,7 +5,7 @@ const Start = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text>App Title</Text>
+        <Text style={styles.title}>App Title</Text>
       </View>
       <View>
         <TextInput
@@ -30,8 +30,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   titleContainer: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 100,
+  },
+  title: {
+    color: 'white',
+    fontSize: 45,
+    fontWeight: '600',
   },
   settingsContainer: {
     alignItems: 'center',
