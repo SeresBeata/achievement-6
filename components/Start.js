@@ -50,10 +50,12 @@ const Start = ({ navigation }) => {
             </View>
           </View>
           {/* End: Color Picker Section  */}
-          <Button
-            title="Start Chatting"
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => navigation.navigate('Chat')}
-          />
+          >
+            <Text style={styles.buttonText}>Start Chatting</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -149,6 +151,19 @@ const styles = StyleSheet.create({
   },
   colorFour: {
     backgroundColor: '#B9C6AE',
+  },
+  button: {
+    width: '88%',
+    backgroundColor: '#757083',
+    height: 65,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 2,
+  },
+  buttonText: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: 'white',
   },
 });
 
