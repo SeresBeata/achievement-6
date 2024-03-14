@@ -9,8 +9,8 @@ const Chat = ({ route }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
-      <Text> This is the Chat!</Text>
-      <Text> Username: {name}</Text>
+      <Text style={[styles.text, styles.Title]}> This is the Chat!</Text>
+      <Text style={styles.text}> Username: {name}</Text>
     </View>
   );
 };
@@ -21,6 +21,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 17,
+    fontWeight: '600',
+  },
+  Title: {
+    fontSize: 30,
+    marginBottom: 20,
   },
 });
 
