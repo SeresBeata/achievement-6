@@ -8,6 +8,9 @@ import {
   ImageBackground,
 } from 'react-native';
 
+//import SVG component
+import SvgIcon from './SvgIcon';
+
 //use img for bg
 const bgImg = require('../img/Background Image.png');
 
@@ -19,11 +22,15 @@ const Start = ({ navigation }) => {
           <Text style={styles.title}>App Title</Text>
         </View>
         <View style={styles.settingsContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Type your username here"
-            placeholderTextColor="#757083"
-          ></TextInput>
+          <View style={styles.inputContainer}>
+            <SvgIcon style={styles.icon} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Type your username here"
+              placeholderTextColor="#757083"
+            ></TextInput>
+          </View>
+
           <Button
             title="Start Chatting"
             onPress={() => navigation.navigate('Chat')}
@@ -61,6 +68,19 @@ const styles = StyleSheet.create({
     width: '88%',
     height: '44%',
     marginBottom: 30,
+  },
+
+  inputContainer: {
+    width: '88%',
+
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    width: '10%',
+    height: '25%',
   },
   textInput: {
     width: '88%',
