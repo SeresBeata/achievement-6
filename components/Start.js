@@ -11,6 +11,7 @@ const Start = ({ navigation }) => {
         <TextInput
           style={styles.textInput}
           placeholder="Type your username here"
+          placeholderTextColor="#757083"
         ></TextInput>
         <Button
           title="Start Chatting"
@@ -47,9 +48,14 @@ const styles = StyleSheet.create({
   textInput: {
     width: '88%',
     padding: 15,
-    borderWidth: 1,
     marginTop: 15,
     marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#757083',
+    backgroundColor: 'white',
+    fontSize: 16,
+    fontWeight: '300',
+    color: '#757083',
   },
 });
 
