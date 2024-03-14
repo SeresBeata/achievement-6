@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 
 //import SVG component
@@ -30,7 +31,25 @@ const Start = ({ navigation }) => {
               placeholderTextColor="#b0acb9"
             ></TextInput>
           </View>
-
+          {/* Color Picker Section: Start  */}
+          <View style={{ width: '88%' }}>
+            <Text style={styles.colorText}>Choose Background Color:</Text>
+            <View style={styles.colorContainer}>
+              <TouchableOpacity
+                style={[styles.colorTemplate, styles.colorOne]}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.colorTemplate, styles.colorTwo]}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.colorTemplate, styles.colorThree]}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.colorTemplate, styles.colorFour]}
+              ></TouchableOpacity>
+            </View>
+          </View>
+          {/* End: Color Picker Section  */}
           <Button
             title="Start Chatting"
             onPress={() => navigation.navigate('Chat')}
@@ -62,7 +81,7 @@ const styles = StyleSheet.create({
   },
   settingsContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     backgroundColor: 'white',
 
     width: '88%',
@@ -101,6 +120,35 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  colorContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  colorText: {
+    fontSize: 17,
+    fontWeight: '400',
+    color: '#757083',
+    marginBottom: 13,
+    alignSelf: 'center',
+  },
+  colorTemplate: {
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+  },
+  colorOne: {
+    backgroundColor: '#090C08',
+  },
+  colorTwo: {
+    backgroundColor: '#474056',
+  },
+  colorThree: {
+    backgroundColor: '#8A95A5',
+  },
+  colorFour: {
+    backgroundColor: '#B9C6AE',
   },
 });
 
