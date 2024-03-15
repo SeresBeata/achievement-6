@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 
 //import the Gifted Chat library
-import { GiftedChat, Bubble, SystemMessage } from 'react-native-gifted-chat';
+import {
+  GiftedChat,
+  Bubble,
+  SystemMessage,
+  Day,
+} from 'react-native-gifted-chat';
 
 // import components from React Native
 import {
@@ -83,11 +88,17 @@ const Chat = ({ route }) => {
     );
   };
 
+  //create rebderDay function to change the style of Day
+  const renderDay = (props) => {
+    return <Day {...props} textStyle={styles.DayText} />;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
         renderBubble={renderBubble}
         renderSystemMessage={renderSystemMessage}
+        renderDay={renderDay}
         messages={messages}
         onSend={(messages) => onSend(messages)}
         user={{
@@ -116,6 +127,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   systemMessageText: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  DayText: {
     fontSize: 14,
     color: '#fff',
     fontWeight: 'bold',
