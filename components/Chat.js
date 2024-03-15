@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 //import the Gifted Chat library
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 // import components from React Native
 import {
@@ -55,9 +55,27 @@ const Chat = ({ route }) => {
     );
   };
 
+  //create the renderBubble function to change color of bubble
+  const renderBubble = (props) => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#b0acb9',
+          },
+          left: {
+            backgroundColor: '#FFF',
+          },
+        }}
+      />
+    );
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <GiftedChat
+        renderBubble={renderBubble}
         messages={messages}
         onSend={(messages) => onSend(messages)}
         user={{
