@@ -6,6 +6,7 @@ import {
   Bubble,
   SystemMessage,
   Day,
+  Send,
 } from 'react-native-gifted-chat';
 
 // import components from React Native
@@ -93,12 +94,30 @@ const Chat = ({ route }) => {
     return <Day {...props} textStyle={styles.DayText} />;
   };
 
+  //create renderSend function to change the style of Send btn
+  const renderSend = (props) => {
+    return (
+      <Send
+        {...props}
+        containerStyle={{
+          height: 40,
+          width: 60,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={styles.SendText}>SEND</Text>
+      </Send>
+    );
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
         renderBubble={renderBubble}
         renderSystemMessage={renderSystemMessage}
         renderDay={renderDay}
+        renderSend={renderSend}
         messages={messages}
         onSend={(messages) => onSend(messages)}
         user={{
@@ -134,6 +153,13 @@ const styles = StyleSheet.create({
   DayText: {
     fontSize: 14,
     color: '#fff',
+    fontWeight: 'bold',
+  },
+  SendText: {
+    padding: 5,
+    backgroundColor: 'plum',
+    color: 'white',
+    borderRadius: 50,
     fontWeight: 'bold',
   },
 });
