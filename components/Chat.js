@@ -34,7 +34,8 @@ const Chat = ({ route }) => {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
+          avatar:
+            'https://fastly.picsum.photos/id/38/200/200.jpg?hmac=dmdbTgVfAkQ41DmAJKt2u_w6vmqFO_UQ_Ro7F9U-Yws',
         },
       },
     ]);
