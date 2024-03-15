@@ -18,11 +18,16 @@ import {
   Platform,
 } from 'react-native';
 
-const Chat = ({ route }) => {
+const Chat = ({ route, navigation }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
   //extract the background route parameter passed from Start
   const { background } = route.params;
+
+  //use the setOptions function of the navigation prop to set the navigation header’s title
+  useEffect(() => {
+    navigation.setOptions({ title: name });
+  }, []);
 
   //create state variable with initial state empty array
   const [messages, setMessages] = useState([]);
