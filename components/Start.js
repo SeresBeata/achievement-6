@@ -29,13 +29,24 @@ const Start = ({ navigation }) => {
   const [pickedcolor3, setPickedcolor3] = useState(false);
   const [pickedcolor4, setPickedcolor4] = useState(false);
 
+  //create state variable for responsiveness in case of keypad usage
+  const [focus, setFocus] = useState(false);
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bgImg} resizeMode="cover" style={styles.bgImg}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>App Title</Text>
         </View>
-        <View style={styles.settingsContainer}>
+        <View
+          // style={styles.settingsContainer}
+          // use ternary operator and style the View component if focus is true
+          style={
+            focus
+              ? [styles.settingsContainer, styles.settingsContainerHeight]
+              : styles.settingsContainer
+          }
+        >
           <View style={styles.inputContainer}>
             <SvgIcon style={styles.icon} />
             <TextInput
@@ -44,6 +55,9 @@ const Start = ({ navigation }) => {
               placeholderTextColor="#b0acb9"
               value={name}
               onChangeText={setName}
+              onTouchStart={() => setFocus(true)}
+              returnKeyType="done"
+              onSubmitEditing={() => setFocus(false)}
             ></TextInput>
           </View>
           {/* Color Picker Section: Start  */}
@@ -164,7 +178,9 @@ const styles = StyleSheet.create({
     height: '44%',
     marginBottom: 30,
   },
-
+  settingsContainerHeight: {
+    height: '70%',
+  },
   inputContainer: {
     width: '88%',
     display: 'flex',
