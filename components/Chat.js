@@ -73,7 +73,7 @@ const Chat = ({ route }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
         renderBubble={renderBubble}
         messages={messages}
@@ -93,8 +93,6 @@ const Chat = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   text: {
     color: 'white',
