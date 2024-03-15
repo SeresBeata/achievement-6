@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 // import components from React Native
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
 const Chat = ({ route }) => {
   //extract the name route parameter passed from Start
@@ -43,13 +49,18 @@ const Chat = ({ route }) => {
   };
 
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={(messages) => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />
+    <View style={{ flex: 1 }}>
+      <GiftedChat
+        messages={messages}
+        onSend={(messages) => onSend(messages)}
+        user={{
+          _id: 1,
+        }}
+      />
+      {Platform.OS === 'android' ? (
+        <KeyboardAvoidingView behavior="height" />
+      ) : null}
+    </View>
   );
 };
 
