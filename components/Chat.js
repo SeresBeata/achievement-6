@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 //import the Gifted Chat library
-import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble, SystemMessage } from 'react-native-gifted-chat';
 
 // import components from React Native
 import {
@@ -72,10 +72,22 @@ const Chat = ({ route }) => {
     );
   };
 
+  //create renderSystemMessage function to change the style of SystemMessage
+  const renderSystemMessage = (props) => {
+    return (
+      <SystemMessage
+        {...props}
+        wrapperStyle={styles.systemMessageWrapper}
+        textStyle={styles.systemMessageText}
+      />
+    );
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
         renderBubble={renderBubble}
+        renderSystemMessage={renderSystemMessage}
         messages={messages}
         onSend={(messages) => onSend(messages)}
         user={{
@@ -102,6 +114,11 @@ const styles = StyleSheet.create({
   Title: {
     fontSize: 30,
     marginBottom: 20,
+  },
+  systemMessageText: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 
