@@ -135,12 +135,13 @@ const Start = ({ navigation }) => {
           {/* End: Color Picker Section  */}
           <TouchableOpacity
             style={styles.button}
-            onPress={() =>
+            onPress={() => {
               navigation.navigate('Chat', {
                 name: name,
                 background: background,
-              })
-            }
+              });
+              setFocus(false);
+            }}
           >
             <Text style={styles.buttonText}>Start Chatting</Text>
           </TouchableOpacity>
