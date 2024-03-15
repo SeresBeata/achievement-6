@@ -120,8 +120,10 @@ const Chat = ({ route }) => {
         renderSend={renderSend}
         messages={messages}
         onSend={(messages) => onSend(messages)}
+        renderUsernameOnMessage={true} // default is false
         user={{
           _id: 1,
+          name: name,
         }}
       />
       {Platform.OS === 'android' ? (
