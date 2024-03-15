@@ -38,6 +38,12 @@ const Chat = ({ route }) => {
             'https://fastly.picsum.photos/id/38/200/200.jpg?hmac=dmdbTgVfAkQ41DmAJKt2u_w6vmqFO_UQ_Ro7F9U-Yws',
         },
       },
+      {
+        _id: 2,
+        text: 'This is a system message',
+        createdAt: new Date(),
+        system: true,
+      },
     ]);
   }, []);
 
