@@ -20,6 +20,7 @@ location.
 
 - Use Expo to set up the React Native project
 - Use Android emulator (Android Studio) to test how the app looks and behaves in different environments
+- Use Gifted Chat React Native library to create chat UI
 
 ### Demo of the App
 
@@ -40,3 +41,9 @@ Start Expo with `npm start` or `expo start` terminal command. T
     Product: Android Studio  
     Date: 14/03/2024  
     [https://developer.android.com/studio](https://developer.android.com/studio)
+
+3.  Reference  
+    Description: Gifted Chat is a React Native library specifically created for developing chat apps.  
+    Product: Gifted Chat  
+    Date: 15/03/2024  
+    [https://github.com/FaridSafi/react-native-gifted-chat](https://github.com/FaridSafi/react-native-gifted-chat)
