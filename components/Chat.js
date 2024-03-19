@@ -73,10 +73,8 @@ const Chat = ({ route, navigation, db }) => {
 
   //create custom function
   const onSend = (newMessages) => {
-    setMessages((previousMessages) =>
-      //use append() function provided by GiftedChat, which appends the new message
-      GiftedChat.append(previousMessages, newMessages)
-    );
+    //Use the addDoc() Firestore function to save the passed message to the function in the database.
+    addDoc(collection(db, 'messages'), newMessages[0]);
   };
 
   //create the renderBubble function to change color of bubble
