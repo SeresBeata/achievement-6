@@ -36,27 +36,7 @@ const Chat = ({ route, navigation, db }) => {
   //Messages must follow a certain format to work with the Gifted Chat library.
   //each message requires an ID, a creation date, and a user object.
   //user object requires a user ID, name, and avatar.
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar:
-            'https://fastly.picsum.photos/id/38/200/200.jpg?hmac=dmdbTgVfAkQ41DmAJKt2u_w6vmqFO_UQ_Ro7F9U-Yws',
-        },
-      },
-      {
-        _id: 2,
-        text: 'This is a system message',
-        createdAt: new Date(),
-        system: true,
-      },
-    ]);
-  }, []);
+  useEffect(() => {}, []);
 
   //create custom function
   const onSend = (newMessages) => {
