@@ -21,6 +21,7 @@ location.
 - Use Expo to set up the React Native project
 - Use Android emulator (Android Studio) to test how the app looks and behaves in different environments
 - Use Gifted Chat React Native library to create chat UI
+- Use Firestore database in real time via the React Native app
 
 ### Demo of the App
 
@@ -47,3 +48,9 @@ Start Expo with `npm start` or `expo start` terminal command. T
     Product: Gifted Chat  
     Date: 15/03/2024  
     [https://github.com/FaridSafi/react-native-gifted-chat](https://github.com/FaridSafi/react-native-gifted-chat)
+
+4.  Reference  
+    Description: Google Firebase is a mobile and web app development platform, that provides services related to app authentication, data storage, security, and much more. A cloud-based database, called Firestore, is one of the services.  
+    Product: Firestore  
+    Date: 19/03/2024  
+    [https://firebase.google.com/](https://firebase.google.com/)
