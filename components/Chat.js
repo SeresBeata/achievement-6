@@ -32,6 +32,8 @@ const Chat = ({ route, navigation, db }) => {
   const { name } = route.params;
   //extract the background route parameter passed from Start
   const { background } = route.params;
+  //use userID, extract it from route.params
+  const { userID } = route.params;
 
   //use the setOptions function of the navigation prop to set the navigation header’s title
   useEffect(() => {
@@ -138,7 +140,7 @@ const Chat = ({ route, navigation, db }) => {
         onSend={(messages) => onSend(messages)}
         renderUsernameOnMessage={true} // default is false
         user={{
-          _id: 1,
+          _id: userID,
           name: name,
         }}
       />
