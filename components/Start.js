@@ -9,10 +9,14 @@ import {
   Button,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 //import SVG component
 import SvgIcon from './SvgIcon';
+
+//import functions for Firebase Anonymous Authentication
+import { getAuth, signInAnonymously } from 'firebase/auth';
 
 //use img for bg
 const bgImg = require('../img/Background Image.png');
@@ -31,6 +35,25 @@ const Start = ({ navigation }) => {
 
   //create state variable for responsiveness in case of keypad usage
   const [focus, setFocus] = useState(false);
+
+  //initialize the Firebase authentication handler
+  const auth = getAuth();
+
+  //create function for sign-in logic
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then((result) => {
+        navigation.navigate('Chat', {
+          userID: result.user.uid,
+          name,
+          background,
+        });
+        Alert.alert('Signed in Successfully!');
+      })
+      .catch((error) => {
+        Alert.alert('Unable to sign in, try later again.');
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -136,10 +159,7 @@ const Start = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Chat', {
-                name: name,
-                background: background,
-              });
+              signInUser();
               setFocus(false);
             }}
           >
