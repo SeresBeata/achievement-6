@@ -18,7 +18,7 @@ import {
   Platform,
 } from 'react-native';
 
-const Chat = ({ route, navigation }) => {
+const Chat = ({ route, navigation, db }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
   //extract the background route parameter passed from Start
