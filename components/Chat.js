@@ -35,11 +35,6 @@ const Chat = ({ route, navigation, db }) => {
   //use userID, extract it from route.params
   const { userID } = route.params;
 
-  //use the setOptions function of the navigation prop to set the navigation header’s title
-  useEffect(() => {
-    navigation.setOptions({ title: name });
-  }, []);
-
   //create state variable with initial state empty array
   const [messages, setMessages] = useState([]);
 
@@ -48,6 +43,9 @@ const Chat = ({ route, navigation, db }) => {
   //each message requires an ID, a creation date, and a user object.
   //user object requires a user ID, name, and avatar.
   useEffect(() => {
+    //use the setOptions function of the navigation prop to set the navigation header’s title
+    navigation.setOptions({ title: name });
+
     //use onSnapshot() that returns the listener unsubscribe function, which is referenced with unsubMessages
     //use query, orderBy functions
     //Define the query reference in a separate line to make easier to read
