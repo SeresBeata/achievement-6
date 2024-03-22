@@ -45,35 +45,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
   //Messages must follow a certain format to work with the Gifted Chat library.
   //each message requires an ID, a creation date, and a user object.
   //user object requires a user ID, name, and avatar.
-  useEffect(() => {
-    //use the setOptions function of the navigation prop to set the navigation header’s title
-    navigation.setOptions({ title: name });
+  useEffect(() => {}, []);
 
-    //use onSnapshot() that returns the listener unsubscribe function, which is referenced with unsubMessages
-    //use query, orderBy functions
-    //Define the query reference in a separate line to make easier to read
-    const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
-
-    // code to execute when component mounted or updated
-    const unsubMessages = onSnapshot(q, (docs) => {
-      let newMessages = [];
-      docs.forEach((doc) => {
-        newMessages.push({
-          id: doc.id,
-          ...doc.data(),
-          createdAt: new Date(doc.data().createdAt.toMillis()),
-        });
-      });
-      cacheMessages(newMessages);
-      setMessages(newMessages);
-    });
-
-    //code to execute when the component will be unmounted
-    //add if statement to check if the unsubMessage isn't undefined. This is a protection procedure in case the onSnapshot() function call fails.
-    return () => {
-      if (unsubMessages) unsubMessages();
-    };
-  }, []);
   //create a new async function called loadCachedLists()
   //call this function if the isConnected prop turns out to be false in useEffect()
   const loadCachedLists = async () => {
