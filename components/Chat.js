@@ -74,6 +74,12 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       if (unsubMessages) unsubMessages();
     };
   }, []);
+  //create a new async function called loadCachedLists()
+  //call this function if the isConnected prop turns out to be false in useEffect()
+  const loadCachedLists = async () => {
+    const cachedMessages = (await AsyncStorage.getItem('new_messages')) || [];
+    setMessages(JSON.parse(cachedMessages));
+  };
 
   //use AsyncStorage.setItem() to cach data
   const cacheMessages = async (messagesToCache) => {
