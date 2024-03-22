@@ -27,6 +27,9 @@ import {
   orderBy,
 } from 'firebase/firestore';
 
+//import AsyncStorage for Local Storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Chat = ({ route, navigation, db, isConnected }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
@@ -61,6 +64,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
           createdAt: new Date(doc.data().createdAt.toMillis()),
         });
       });
+      cacheMessages(newMessages);
       setMessages(newMessages);
     });
 
@@ -70,6 +74,18 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       if (unsubMessages) unsubMessages();
     };
   }, []);
+
+  //use AsyncStorage.setItem() to cach data
+  const cacheMessages = async (messagesToCache) => {
+    try {
+      await AsyncStorage.setItem(
+        'new_messages',
+        JSON.stringify(messagesToCache)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   //create custom function
   const onSend = (newMessages) => {
