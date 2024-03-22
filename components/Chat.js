@@ -7,6 +7,7 @@ import {
   SystemMessage,
   Day,
   Send,
+  InputToolbar,
 } from 'react-native-gifted-chat';
 
 // import components from React Native
@@ -160,6 +161,12 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     );
   };
 
+  //disables toolbar if user loses connection
+  const renderInputToolbar = (props) => {
+    if (isConnected) return <InputToolbar {...props} />;
+    else return null;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
@@ -170,6 +177,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
         messages={messages}
         onSend={(messages) => onSend(messages)}
         renderUsernameOnMessage={true} // default is false
+        renderInputToolbar={renderInputToolbar}
         user={{
           _id: userID,
           name: name,
