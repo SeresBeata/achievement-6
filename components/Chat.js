@@ -27,7 +27,7 @@ import {
   orderBy,
 } from 'firebase/firestore';
 
-const Chat = ({ route, navigation, db }) => {
+const Chat = ({ route, navigation, db, isConnected }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
   //extract the background route parameter passed from Start
