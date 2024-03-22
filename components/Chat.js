@@ -41,11 +41,49 @@ const Chat = ({ route, navigation, db, isConnected }) => {
   //create state variable with initial state empty array
   const [messages, setMessages] = useState([]);
 
+  // declare the variable outside useEffect
+  let unsubMessages;
+
   //use useEffect for messages
   //Messages must follow a certain format to work with the Gifted Chat library.
   //each message requires an ID, a creation date, and a user object.
   //user object requires a user ID, name, and avatar.
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //use the setOptions function of the navigation prop to set the navigation header’s title
+    navigation.setOptions({ title: name });
+
+    //fetch messages from the Firestore Database only if there’s a network connection
+    if (isConnected === true) {
+      // unregister current onSnapshot() listener to avoid registering multiple listeners when useEffect code is re-executed.
+      if (unsubMessages) unsubMessages();
+      unsubMessages = null;
+
+      //use onSnapshot() that returns the listener unsubscribe function, which is referenced with unsubMessages
+      //use query, orderBy functions
+      //Define the query reference in a separate line to make easier to read
+      const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+
+      // code to execute when component mounted or updated
+      unsubMessages = onSnapshot(q, (docs) => {
+        let newMessages = [];
+        docs.forEach((doc) => {
+          newMessages.push({
+            id: doc.id,
+            ...doc.data(),
+            createdAt: new Date(doc.data().createdAt.toMillis()),
+          });
+        });
+        cacheMessages(newMessages);
+        setMessages(newMessages);
+      });
+    } else loadCachedLists(); //if there’s no network connection call loadCachedLists()
+
+    //code to execute when the component will be unmounted
+    //add if statement to check if the unsubMessage isn't undefined. This is a protection procedure in case the onSnapshot() function call fails.
+    return () => {
+      if (unsubMessages) unsubMessages();
+    };
+  }, [isConnected]);
 
   //create a new async function called loadCachedLists()
   //call this function if the isConnected prop turns out to be false in useEffect()
