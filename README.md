@@ -22,6 +22,8 @@ location.
 - Use Android emulator (Android Studio) to test how the app looks and behaves in different environments
 - Use Gifted Chat React Native library to create chat UI
 - Use Firestore database in real time via the React Native app
+- Use NetInfo for detecting a Network Connection (determine whether a user is online or not)
+- Use AsyncStorage for client-side data storage
 
 ### Demo of the App
 
@@ -54,3 +56,15 @@ Start Expo with `npm start` or `expo start` terminal command. T
     Product: Firestore  
     Date: 19/03/2024  
     [https://firebase.google.com/](https://firebase.google.com/)
+
+5.  Reference  
+    Description: NetInfo is cross-platform API that provides access to network information.  
+    Product: NetInfo  
+    Date: 22/03/2024  
+    [https://docs.expo.dev/versions/latest/sdk/netinfo/](https://docs.expo.dev/versions/latest/sdk/netinfo/)
+
+6.  Reference  
+    Description: AsyncStorage is A library that provides an asynchronous, unencrypted, persistent, key-value storage API.  
+    Product: AsyncStorage  
+    Date: 22/03/2024  
+    [https://docs.expo.dev/versions/latest/sdk/async-storage/](https://docs.expo.dev/versions/latest/sdk/async-storage/)
