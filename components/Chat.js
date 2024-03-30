@@ -31,6 +31,9 @@ import {
 //import AsyncStorage for Local Storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//import child component
+import CustomActions from './CustomActions';
+
 const Chat = ({ route, navigation, db, isConnected }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
@@ -167,6 +170,11 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     else return null;
   };
 
+  //create function for the custom componet "+" btn
+  const renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
@@ -178,6 +186,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
         onSend={(messages) => onSend(messages)}
         renderUsernameOnMessage={true} // default is false
         renderInputToolbar={renderInputToolbar}
+        renderActions={renderCustomActions}
         user={{
           _id: userID,
           name: name,
