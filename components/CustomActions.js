@@ -11,10 +11,16 @@ import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 
 //import functions from Firebase
-import { ref, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 //create child component
-const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage }) => {
+const CustomActions = ({
+  wrapperStyle,
+  iconTextStyle,
+  onSend,
+  storage,
+  userID,
+}) => {
   //use useActionSheet()
   const actionSheet = useActionSheet();
 
@@ -69,20 +75,32 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage }) => {
     } else Alert.alert("Permissions haven't been granted.");
   };
 
-  //
+  //create function to combine multiple strings to produce a string that can be used as a unique reference for the image to be uploaded
+  const generateReference = (uri) => {
+    const timeStamp = new Date().getTime();
+    const imageName = uri.split('/')[uri.split('/').length - 1];
+    return `${userID}-${timeStamp}-${imageName}`;
+  };
+
+  //create async function to get permission to media library
   const pickImage = async () => {
     let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissions?.granted) {
       let result = await ImagePicker.launchImageLibraryAsync();
       if (!result.canceled) {
         const imageURI = result.assets[0].uri;
+        //use generateReference()
+        const uniqueRefString = generateReference(imageURI);
         const response = await fetch(imageURI);
         const blob = await response.blob();
         //prepare a new reference for img
-        const newUploadRef = ref(storage, 'image123');
+        const newUploadRef = ref(storage, uniqueRefString);
         //upload img by using uploadBytes
         uploadBytes(newUploadRef, blob).then(async (snapshot) => {
           console.log('File has been uploaded successfully');
+          const imageURL = await getDownloadURL(snapshot.ref);
+          //call onSend()
+          onSend({ image: imageURL });
         });
       } else Alert.alert("Permissions haven't been granted.");
     }
