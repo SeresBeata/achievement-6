@@ -34,6 +34,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import child component
 import CustomActions from './CustomActions';
 
+//import MapView component
+import MapView from 'react-native-maps';
+
 const Chat = ({ route, navigation, db, isConnected }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
@@ -175,6 +178,26 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     return <CustomActions {...props} />;
   };
 
+  //create function for custom component to render location data
+  const renderCustomView = (props) => {
+    const { currentMessage } = props;
+    //use if conditional statement: if there is location data, then return <MapView> component with the location data, otherwise return nothing
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 250, height: 200, borderRadius: 13, margin: 10 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
       <GiftedChat
@@ -187,6 +210,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
         renderUsernameOnMessage={true} // default is false
         renderInputToolbar={renderInputToolbar}
         renderActions={renderCustomActions}
+        renderCustomView={renderCustomView}
         user={{
           _id: userID,
           name: name,

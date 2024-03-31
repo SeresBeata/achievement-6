@@ -5,8 +5,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 //do not need to install @expo/react-native-action-sheet because it is already installed with react-native-gifted-chat module
 import { useActionSheet } from '@expo/react-native-action-sheet';
 
+//import Location
+import * as Location from 'expo-location';
+
 //create child component
-const CustomActions = ({ wrapperStyle, iconTextStyle }) => {
+const CustomActions = ({ wrapperStyle, iconTextStyle, onSend }) => {
   //use useActionSheet()
   const actionSheet = useActionSheet();
 
@@ -42,6 +45,23 @@ const CustomActions = ({ wrapperStyle, iconTextStyle }) => {
         }
       }
     );
+  };
+
+  //create async function to get location data
+  const getLocation = async () => {
+    let permissions = await Location.requestForegroundPermissionsAsync();
+    if (permissions?.granted) {
+      const location = await Location.getCurrentPositionAsync({});
+      if (location) {
+        //call onSend()
+        onSend({
+          location: {
+            longitude: location.coords.longitude,
+            latitude: location.coords.latitude,
+          },
+        });
+      } else Alert.alert('Error occurred while fetching location');
+    } else Alert.alert("Permissions haven't been granted.");
   };
 
   return (
