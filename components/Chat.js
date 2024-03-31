@@ -37,7 +37,7 @@ import CustomActions from './CustomActions';
 //import MapView component
 import MapView from 'react-native-maps';
 
-const Chat = ({ route, navigation, db, isConnected }) => {
+const Chat = ({ route, navigation, db, isConnected, storage }) => {
   //extract the name route parameter passed from Start
   const { name } = route.params;
   //extract the background route parameter passed from Start
@@ -175,7 +175,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
 
   //create function for the custom componet "+" btn
   const renderCustomActions = (props) => {
-    return <CustomActions {...props} />;
+    return <CustomActions storage={storage} {...props} />;
   };
 
   //create function for custom component to render location data

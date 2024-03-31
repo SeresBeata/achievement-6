@@ -19,6 +19,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //import useNetInfo for network connection state
 import { useNetInfo } from '@react-native-community/netinfo';
 
+//import getStorage to store images at Firebase
+import { getStorage } from 'firebase/storage';
+
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +58,9 @@ const App = () => {
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
 
+  // initialize the storage handler to store images
+  const storage = getStorage(app);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Start">
@@ -62,10 +68,12 @@ const App = () => {
         <Stack.Screen name="Chat">
           {/* pass db props to the Chat component */}
           {/* pass the boolean value of connectionStatus.isConnected to the Chat component as a prop called isConnected */}
+          {/* pass storage to the Chat component as a prop */}
           {(props) => (
             <Chat
               db={db}
               isConnected={connectionStatus.isConnected}
+              storage={storage}
               {...props}
             />
           )}

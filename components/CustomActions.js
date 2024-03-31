@@ -7,9 +7,14 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 
 //import Location
 import * as Location from 'expo-location';
+//import ImagePicker
+import * as ImagePicker from 'expo-image-picker';
+
+//import functions from Firebase
+import { ref, uploadBytes } from 'firebase/storage';
 
 //create child component
-const CustomActions = ({ wrapperStyle, iconTextStyle, onSend }) => {
+const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage }) => {
   //use useActionSheet()
   const actionSheet = useActionSheet();
 
@@ -62,6 +67,25 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend }) => {
         });
       } else Alert.alert('Error occurred while fetching location');
     } else Alert.alert("Permissions haven't been granted.");
+  };
+
+  //
+  const pickImage = async () => {
+    let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissions?.granted) {
+      let result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.canceled) {
+        const imageURI = result.assets[0].uri;
+        const response = await fetch(imageURI);
+        const blob = await response.blob();
+        //prepare a new reference for img
+        const newUploadRef = ref(storage, 'image123');
+        //upload img by using uploadBytes
+        uploadBytes(newUploadRef, blob).then(async (snapshot) => {
+          console.log('File has been uploaded successfully');
+        });
+      } else Alert.alert("Permissions haven't been granted.");
+    }
   };
 
   return (
