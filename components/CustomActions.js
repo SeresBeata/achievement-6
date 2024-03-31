@@ -109,6 +109,16 @@ const CustomActions = ({
     }
   };
 
+  //create async function to get permission to camera
+  const takePhoto = async () => {
+    let permissions = await ImagePicker.requestCameraPermissionsAsync();
+    if (permissions?.granted) {
+      let result = await ImagePicker.launchCameraAsync();
+      if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
+      else Alert.alert("Permissions haven't been granted.");
+    }
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
       <View style={[styles.wrapper, wrapperStyle]}>
