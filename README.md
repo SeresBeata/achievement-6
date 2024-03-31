@@ -24,6 +24,7 @@ location.
 - Use Firestore database in real time via the React Native app
 - Use NetInfo for detecting a Network Connection (determine whether a user is online or not)
 - Use AsyncStorage for client-side data storage
+- Implement communication features (send image and location data) by using Expo ImagePicker, Expo Location
 
 ### Demo of the App
 
@@ -68,3 +69,15 @@ Start Expo with `npm start` or `expo start` terminal command. T
     Product: AsyncStorage  
     Date: 22/03/2024  
     [https://docs.expo.dev/versions/latest/sdk/async-storage/](https://docs.expo.dev/versions/latest/sdk/async-storage/)
+
+7.  Reference  
+    Description: Expo ImagePicker is a library that provides access to the system's UI for selecting images and videos from the phone's library or taking a photo with the camera.  
+    Product: Expo ImagePicker  
+    Date: 31/03/2024  
+    [https://docs.expo.dev/versions/latest/sdk/imagepicker/](https://docs.expo.dev/versions/latest/sdk/imagepicker/)
+
+8.  Reference  
+    Description: Expo Location a library that provides access to reading geolocation information, polling current location or subscribing location update events from the device.  
+    Product: Expo Location  
+    Date: 31/03/2024  
+    [https://docs.expo.dev/versions/latest/sdk/location/](https://docs.expo.dev/versions/latest/sdk/location/)
