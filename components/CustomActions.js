@@ -82,27 +82,30 @@ const CustomActions = ({
     return `${userID}-${timeStamp}-${imageName}`;
   };
 
+  //create async function for uploading and sending image as a message
+  const uploadAndSendImage = async (imageURI) => {
+    //use generateReference()
+    const uniqueRefString = generateReference(imageURI);
+    const response = await fetch(imageURI);
+    const blob = await response.blob();
+    //prepare a new reference for img
+    const newUploadRef = ref(storage, uniqueRefString);
+    //upload img by using uploadBytes
+    uploadBytes(newUploadRef, blob).then(async (snapshot) => {
+      console.log('File has been uploaded successfully');
+      const imageURL = await getDownloadURL(snapshot.ref);
+      //call onSend()
+      onSend({ image: imageURL });
+    });
+  };
+
   //create async function to get permission to media library
   const pickImage = async () => {
     let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissions?.granted) {
       let result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.canceled) {
-        const imageURI = result.assets[0].uri;
-        //use generateReference()
-        const uniqueRefString = generateReference(imageURI);
-        const response = await fetch(imageURI);
-        const blob = await response.blob();
-        //prepare a new reference for img
-        const newUploadRef = ref(storage, uniqueRefString);
-        //upload img by using uploadBytes
-        uploadBytes(newUploadRef, blob).then(async (snapshot) => {
-          console.log('File has been uploaded successfully');
-          const imageURL = await getDownloadURL(snapshot.ref);
-          //call onSend()
-          onSend({ image: imageURL });
-        });
-      } else Alert.alert("Permissions haven't been granted.");
+      if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
+      else Alert.alert("Permissions haven't been granted.");
     }
   };
 
