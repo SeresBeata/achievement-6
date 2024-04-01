@@ -16,6 +16,9 @@ location.
 
 ### Screenshots to represent the project
 
+<img src="https://github.com/SeresBeata/achievement-6/blob/master/img/Screenshot_1711975215.png?raw=true" width="300" />
+<img src="https://github.com/SeresBeata/achievement-6/blob/master/img/Screenshot_1711975194.png?raw=true" width="300" />
+
 ### Tasks in the project
 
 - Use Expo to set up the React Native project
@@ -27,6 +30,8 @@ location.
 - Implement communication features (send image and location data) by using Expo ImagePicker, Expo Location
 
 ### Demo of the App
+
+<img src="https://github.com/SeresBeata/achievement-6/blob/master/img/chatapp.gif?raw=true" width="300" />
 
 ### Development mode
 
