@@ -59,7 +59,7 @@ const Start = ({ navigation }) => {
     <View style={styles.container}>
       <ImageBackground source={bgImg} resizeMode="cover" style={styles.bgImg}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>App Title</Text>
+          <Text style={styles.title}>Chat App</Text>
         </View>
         <View
           // style={styles.settingsContainer}
